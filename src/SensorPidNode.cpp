@@ -23,7 +23,7 @@ SensorPidNode::SensorPidNode(ros::NodeHandle *nh)
     control_effort_ = 0.0;
     max_range_ = 10.0;
 
-    sonar_sub_ = nh->subscribe("/sonar_front", 1, &SensorPidNode::sonarCb, this);
+    sonar_sub_ = nh->subscribe("/rpi/sonar", 1, &SensorPidNode::sonarCb, this);
     control_effort_sub_ = nh->subscribe("/control_effort", 1, &SensorPidNode::controlEffortCb, this);
     sensor_pid_enable_sub_ = nh->subscribe("sensor_pid_enable", 1, &SensorPidNode::sensorPidEnableCb, this);
     pose_sub_ = nh->subscribe("/mavros/local_position/pose", 1, &SensorPidNode::poseCb, this);

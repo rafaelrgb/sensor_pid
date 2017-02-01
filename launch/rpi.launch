@@ -1,0 +1,28 @@
+<launch>
+        <!-- vim: set ft=xml noet : -->
+        <!-- base node launch file-->
+
+        <node pkg="mavros" type="mavros_node" name="mavros" required="true" clear_params="true" output="screen">
+                <param name="fcu_url" value="udp://192.168.43.137:14555@" />
+                <param name="gcs_url" value="" />
+                <param name="target_system_id" value="1" />
+                <param name="target_component_id" value="1" />
+
+                <!-- load blacklist, config -->
+                <rosparam command="load" file="$(arg pluginlists_yaml)" />
+                <rosparam command="load" file="$(arg config_yaml)" />
+        </node>
+
+        <node pkg="sensor_pid" type="sensor_pid_node" name="sensor_pid_node" output="screen" />
+
+        <node name="pid" pkg="pid" type="controller" output="screen" >
+              <param name="Kp" value="1.0" />
+              <param name="Ki" value="0.0" />
+              <param name="Kd" value="0.5" />
+         </node>
+
+        <group ns="rpi">
+            <node pkg="sensor_drivers" type="sonar_driver" name="sonar_ddriver" output="scree" />
+        </group>
+
+</launch>
