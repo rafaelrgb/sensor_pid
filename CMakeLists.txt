@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_package(
     INCLUDE_DIRS include
-    CATKIN_DEPENDS roscpp mavros std_msgs mav_msgs nav_msgs geometry_msgs
+    CATKIN_DEPENDS roscpp mavros std_msgs nav_msgs geometry_msgs
 )
 
 include_directories(
