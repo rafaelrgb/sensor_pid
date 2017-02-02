@@ -2,6 +2,9 @@
         <!-- vim: set ft=xml noet : -->
         <!-- base node launch file-->
 
+        <arg name="pluginlists_yaml" default="$(find mavros)/launch/apm_pluginlists.yaml" />
+        <arg name="config_yaml" default="$(find mavros)/launch/apm_config.yaml" />
+
 	<group ns="rpi">
 
                 <node pkg="mavros" type="mavros_node" name="mavros" required="true"  clear_params="true" output="screen">
