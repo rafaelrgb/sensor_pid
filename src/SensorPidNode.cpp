@@ -24,12 +24,12 @@ SensorPidNode::SensorPidNode(ros::NodeHandle *nh)
     max_range_ = 10.0;
 
     sonar_sub_ = nh->subscribe("/rpi/sonar", 1, &SensorPidNode::sonarCb, this);
-    control_effort_sub_ = nh->subscribe("/control_effort", 1, &SensorPidNode::controlEffortCb, this);
+    control_effort_sub_ = nh->subscribe("control_effort", 1, &SensorPidNode::controlEffortCb, this);
     sensor_pid_enable_sub_ = nh->subscribe("sensor_pid_enable", 1, &SensorPidNode::sensorPidEnableCb, this);
-    pose_sub_ = nh->subscribe("/mavros/local_position/pose", 1, &SensorPidNode::poseCb, this);
-    state_pub_ = nh->advertise<std_msgs::Float64>("/state", 10);
-    setpoint_pub_ = nh->advertise<std_msgs::Float64>("/setpoint", 10);
-    cmd_vel_pub_ = nh->advertise<geometry_msgs::TwistStamped>("mavros/setpoint_velocity/cmd_vel", 10);
+    pose_sub_ = nh->subscribe("/rpi/mavros/local_position/pose", 1, &SensorPidNode::poseCb, this);
+    state_pub_ = nh->advertise<std_msgs::Float64>("state", 10);
+    setpoint_pub_ = nh->advertise<std_msgs::Float64>("setpoint", 10);
+    cmd_vel_pub_ = nh->advertise<geometry_msgs::TwistStamped>("/rpi/mavros/setpoint_velocity/cmd_vel", 10);
 }
 
 SensorPidNode::~SensorPidNode()
